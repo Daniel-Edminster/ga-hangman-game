@@ -104,3 +104,21 @@ textarea {
     text-align: center;
     display: block;
 }
+
+.manual-word {
+
+    min-height: 4em;
+    width: 20em;
+    border: 5px double white;
+    color: #f1f1f1;
+    text-decoration: none;
+    padding: .4em;
+    /* border-radius: .2em; */
+    margin: 2em auto;
+    background: #1f1f1f;
+    display: block;
+    /* font-size: 2em; */
+}
+.manual-word:focus {
+    outline: none;
+}
