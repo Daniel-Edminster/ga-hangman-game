@@ -1,0 +1,50 @@
+<html>
+	<head>
+
+		<link rel="stylesheet" href="css/style.css">
+
+		<script src="js/keyEvent.js"></script>
+		<script src="js/ascii.gamestate.js"></script>
+		
+	</head>
+<body onkeypress="keyEvent(event);">
+
+	<!-- <div class="gallows">
+		<pre>
+			+&#9472;&#9472;&#9472;&#x2510;
+			&#x2502;   &#x2502;
+			O   &#x2502;
+		       /|\  &#x2502;
+		       / \  &#x2502;
+			    &#x2502;
+		     =========
+	</pre>
+	</div> -->
+	<div class="gallows">
+<pre id="gamestateDisplay">
+
+
+</pre>
+</div>
+
+	<div id="responseOutput"></div>
+
+	<br >
+	<div id="letters"></div>
+<div id="showKey"></div>
+
+<div id="scoreDisplay"></div>
+
+<br />
+<div id="link-container">
+<a href="#" class="gamebutton" onclick="resetScore()">Reset Score</a><br /><br />
+<a href="#" id="clockdiv" class="gamebutton extended"></a>
+</div>
+
+<div id="gsd"></div>
+	<script src="js/words.js"></script>
+	<script>
+
+	</script>
+	</body>
+</html>

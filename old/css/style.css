@@ -1,0 +1,11 @@
+.gallows {
+    display: grid;
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.griditem {
+    min-height: 1em;
+    min-width: 1em;
+}
