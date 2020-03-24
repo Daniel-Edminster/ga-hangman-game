@@ -5,14 +5,10 @@
 }
 body {
     font-size: 1.1em;
-    background: #f1f1f1;
+    background: #111111;
     margin: 0;
     padding: 0;
-
-    /* border: 15px double black; */
-/* 
-    border-left: 50px double black;
-    border-right: 50px double black; */
+    color: white;
 }
 
 .ascii-title {
@@ -40,13 +36,7 @@ body {
 }
 
 pre {
-    border: 2px dotted #000;
-    max-width: 33vw;
-    min-height: 30vh;
-    margin: auto auto;
-    font-size: 2em;
-    text-align: center;
-    display: block;
+
 
 }
 
@@ -83,8 +73,8 @@ textarea {
 }
 
 .gamebutton {
-    border: 1px solid black;
-    color: black;
+    border: 1px solid white;
+    color: #f1f1f1;
     text-decoration: none;
     padding: .4em;
     border-radius: .2em;
@@ -105,5 +95,12 @@ textarea {
 }
 
 #gamestateDisplay {
-    border: 3px double black;
+    border: 3px double #f1f1f1;
+    /* border: 2px dotted #000; */
+    max-width: 35vw;
+    min-height: 30vh;
+    margin: 0 auto;
+    font-size: 2em;
+    text-align: center;
+    display: block;
 }

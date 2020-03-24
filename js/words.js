@@ -1,6 +1,4 @@
 
-// const getWord = () =>
-// {
 
 let w = "-1";
 let x = -1;
