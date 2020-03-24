@@ -8,9 +8,11 @@ let hiddenWord = "";
 let underscore = [];
 let wAsArray = [];
 let wrongGuesses = 0;
+let usedKeys = [];
 
 let score = window.localStorage;
 let scoreUpdated = 0;
+let gameended = 0;
 
 function checkWin()
 {
@@ -35,7 +37,15 @@ function checkWin()
 
 	if(wrongGuesses === 6)
 	{
-		alert("You killed him");
+		if(!gameended)
+		{
+			gameended = 1;
+			alert("You killed him. Your word was: " + w + "\n Resetting game..");
+			setTimeout(function() {
+				location.reload();
+			},1500)
+
+		}
 	}
 }
 
@@ -86,17 +96,18 @@ window.onload = function ()
 
 	while (x === -1)
 	{
+		//filter through words with spaces and -
+
 		this.getWord();	
-		// this.alert(w);
 		if(w.indexOf("-") !== -1)
 		{
-			// this.alert(w+" setting w to -1");
+
 			w = "-1";
 			
 		}
 		if(w.indexOf(" ") !== -1) 
 		{
-			// this.alert(w+" setting w to -1");
+
 			w = "-1";
 		}
 
@@ -125,30 +136,39 @@ window.onload = function ()
 
 function checkLetterPool(char)
 {
-	let cc = String.fromCharCode(char.charCode).toUpperCase();
-	// alert(cc);
-	// alert(typeof letters);
 
 	
-	// console.log(cc);
-	
-	let index = '';
-    if(letters.includes(cc))
-    {
-	  	index = letters.indexOf(cc);
-		letters.splice(index, 1);
-		// alert("Found char"); 
-	}
-	
-	this.document.getElementById("letters").innerHTML = letters.join(" ");
-	// this.document.getElementById.("responseOutput").inn
-	fillUnderscores(cc.toLowerCase());
+		let cc = String.fromCharCode(char.charCode).toUpperCase();
+		
+		let index = '';
+
+		if(!usedKeys.includes(cc))
+		{
+			usedKeys.push(cc);
+		
+
+		console.log(usedKeys);
+			if(letters.includes(cc))
+			{
+				index = letters.indexOf(cc);
+				letters.splice(index, 1);
+				// alert("Found char"); 
+			}
+
+			
+			this.document.getElementById("letters").innerHTML = letters.join(" ");
+			fillUnderscores(cc.toLowerCase());
+		}
+
+		else {
+
+		}
+		
 
 }
 
 function fillUnderscores(char)
 {
-	// while(wAsArray.indexOf(char) !== -1)
 
 	for(let i=0;i<wAsArray.length;i++)
 	{
@@ -163,12 +183,13 @@ function fillUnderscores(char)
 	{
 		if(!letters.includes(char))
 		{
+
 			wrongGuesses++;
 			checkWin();
 
 		}
 		else {
-			wrongGuesses++;
+			// wrongGuesses++;
 			checkWin();
 		}
 	}
@@ -199,7 +220,7 @@ function fillUnderscores(char)
 //https://codepen.io/yaphi1/pen/KpbRZL
 var time_in_minutes = 10;
 var current_time = Date.parse(new Date());
-var deadline = new Date(current_time + time_in_minutes*60*1000);
+var deadline = new Date(current_time + time_in_minutes*30*1000);
 
 
 function time_remaining(endtime){

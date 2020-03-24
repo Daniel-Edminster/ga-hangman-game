@@ -15,6 +15,11 @@ body {
     border-right: 50px double black; */
 }
 
+.ascii-title {
+    margin: 0 auto;
+    font-size: .5em;
+}
+
 .gallows {
     margin: 0 auto;
     display: block;
