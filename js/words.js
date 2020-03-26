@@ -40,7 +40,7 @@ function checkWin(timeup = 0)
 				alert("Great job, +1 total score!\nReloading game..");
 				setTimeout(function() {
 					location.reload();
-				},1500)
+				},1500);
 
 			}
 			
@@ -84,14 +84,14 @@ function getWord()
 
 		xhr.addEventListener("readystatechange", function() 
 		{
-			if (this.readyState === this.DONE) 
-			{
 				// console.log(this.responseText);
 
 				let response = JSON.parse(this.responseText);
 
 
-				w = response["word"];
+				w = response["word"];		{
+			if (this.readyState === this.DONE) 
+		
 
 
 			}
@@ -263,3 +263,11 @@ function run_clock(id,endtime){
 	var timeinterval = setInterval(update_clock,1000);
 }
 run_clock('clockdiv',deadline);
+
+
+let mobileInput = document.querySelector(".mobileInput");
+
+mobileInput.addEventListener("keyup", function()
+{
+	mobileInput.value="";
+});

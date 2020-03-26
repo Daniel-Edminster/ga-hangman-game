@@ -103,7 +103,7 @@ function checkLetterPool(char)
 
 //collected by scraping, no API unfortunately
 let hpGlossary = `Accio Aconite Alchemy Alohomora Aparecium Apparate Arithmancy Astronomy Auror Azkaban Basilisk Beater Bezoar Bludgers Boggart Bowtruckle Bubotuber Butterbeer Centaurs Charm Chaser Chimaera Chocoballs Colloportus Comet Crup Decree Densaugeo Diffindo Disapparate Dissendium Divination Doxy Dragon Dungbomb Engorgio Evanesco Expelliarmus Ferula Firebolt Flagrate Flobberworm Furnunculus Galleon Goblins Gobstones Grim Grindylow Gringotts Grunnings Gurg Healer Heliopath Hellebore Heptomology Herbology Hinkypunk Hippogriff Hogsmeade Honeydukes Howler Impervius Incarcerous Incendio Kappa Karkus Keeper Knarl Kneazle Knut Kwikspell Legilimency Legilimens Leprechaun Locomotor Magorian Mandragora Mandrake Merpeople Mobiliarbus Mobilicorpus Monkshood Morsmordre Mudblood Muggle Murtlap Nargles Niffler Nox Obliviate Obliviator Occlumency Ollivanders Omnioculars Ornithomancy Parselmouth Parseltongue Patronus Pensieve Phoenix Poltergeist Porlock Portkey Portus Potions Protego Quaffle Quidditch Quietus Reducio Relashio Remembrall Rennervate Reparo Rictusempra Riddikulus Salamander Scourgify Seeker Seer Sickle Silencio Smeltings Sneakoscope Sonorus Spellotape Splinching Squib Stupefy Tarantallegra Thestral Transfiguration Unicorn Unspeakable Vampire Veritaserum Wand Watchwizard Welcomewitch Werewolf Wizengamot Wolfsbane WWN`.split(" ");
-// console.log(hpGlossary);
+console.log(hpGlossary);
 
 w = hpGlossary[randomIndex(0,hpGlossary.length-1)];
 wAsArray = w.toLowerCase().split("");
