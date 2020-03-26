@@ -89,9 +89,9 @@ function getWord()
 				let response = JSON.parse(this.responseText);
 
 
-				w = response["word"];		{
+				w = response["word"];		
 			if (this.readyState === this.DONE) 
-		
+			{
 
 
 			}
@@ -151,7 +151,6 @@ window.onload = function ()
 function checkLetterPool(char)
 {
 
-	
 		let cc = String.fromCharCode(char.charCode).toUpperCase();
 		
 		let index = '';
@@ -232,6 +231,7 @@ function fillUnderscores(char)
 //   handler();
 
 //https://codepen.io/yaphi1/pen/KpbRZL
+
 let time_in_minutes = 10;
 let current_time = Date.parse(new Date());
 let deadline = new Date(current_time + time_in_minutes*30*1000);
@@ -265,9 +265,4 @@ function run_clock(id,endtime){
 run_clock('clockdiv',deadline);
 
 
-let mobileInput = document.querySelector(".mobileInput");
 
-mobileInput.addEventListener("keyup", function()
-{
-	mobileInput.value="";
-});

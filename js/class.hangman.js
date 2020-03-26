@@ -47,18 +47,19 @@ class Hangman {
         {
             //using xhr for non-async api call
 
-            let data = null;
-            let xhr = new XMLHttpRequest();
+            var data = null;
+            var xhr = new XMLHttpRequest();
             xhr.withCredentials = true;
 
-            xhr.addEventListener("readystatechange" function()
+            xhr.addEventListener("readystatechange", function()
             {
                 let response = JSON.parse(this.responseText);
 
-                word = response['word'];
-                if (this.readyState === this.DONE) 
-                {          
-                }
+                console.log(response);
+                this.word = response['word'];
+                // if (this.readyState === this.DONE) 
+                // {          
+                // }
             })
 
             xhr.open("GET", "https://wordsapiv1.p.rapidapi.com/words/?random=true&frequencymin=8", false);
@@ -67,7 +68,7 @@ class Hangman {
 
             xhr.send(data);
 
-            return word;
+            return this.word;
         }
     }
 
@@ -80,7 +81,7 @@ class Hangman {
 
             while(x === -1)
             {
-                this.word = getWord(mode, '');
+                this.word = this.getWord(mode, '');
 
                 if( (this.word.indexOf("-") || this.word.indexOf(" ")) !== -1 )
                 {
@@ -94,6 +95,7 @@ class Hangman {
                 }
             }
         }
+
         else if(mode === "potter")
         {
             let hpGlossary = `Accio Aconite Alchemy Alohomora Aparecium Apparate Arithmancy Astronomy Auror Azkaban Basilisk Beater Bezoar Bludgers Boggart Bowtruckle Bubotuber Butterbeer Centaurs Charm Chaser Chimaera Chocoballs Colloportus Comet Crup Decree Densaugeo Diffindo Disapparate Dissendium Divination Doxy Dragon Dungbomb Engorgio Evanesco Expelliarmus Ferula Firebolt Flagrate Flobberworm Furnunculus Galleon Goblins Gobstones Grim Grindylow Gringotts Grunnings Gurg Healer Heliopath Hellebore Heptomology Herbology Hinkypunk Hippogriff Hogsmeade Honeydukes Howler Impervius Incarcerous Incendio Kappa Karkus Keeper Knarl Kneazle Knut Kwikspell Legilimency Legilimens Leprechaun Locomotor Magorian Mandragora Mandrake Merpeople Mobiliarbus Mobilicorpus Monkshood Morsmordre Mudblood Muggle Murtlap Nargles Niffler Nox Obliviate Obliviator Occlumency Ollivanders Omnioculars Ornithomancy Parselmouth Parseltongue Patronus Pensieve Phoenix Poltergeist Porlock Portkey Portus Potions Protego Quaffle Quidditch Quietus Reducio Relashio Remembrall Rennervate Reparo Rictusempra Riddikulus Salamander Scourgify Seeker Seer Sickle Silencio Smeltings Sneakoscope Sonorus Spellotape Splinching Squib Stupefy Tarantallegra Thestral Transfiguration Unicorn Unspeakable Vampire Veritaserum Wand Watchwizard Welcomewitch Werewolf Wizengamot Wolfsbane WWN`.split(" ");
@@ -159,7 +161,7 @@ class Hangman {
         {
             if(!this.letters.includes(char))
             {
-                wrongGuesses++;
+                this.wrongGuesses++;
                 this.checkWin();
 
             }
@@ -169,20 +171,19 @@ class Hangman {
             }
         }
 
-        if(wrongGuesses < 6)
+        
+        if(this.wrongGuesses < this.gamestates.length -1)
         {
             document.getElementById("gamestateDisplay").innerHTML = this.gamestates[wrongGuesses];
         }
         else {
-            document.getElementById("gamestateDisplay").innerHTML = this.gamestates[6];
+            document.getElementById("gamestateDisplay").innerHTML = this.gamestates[this.gamestates.length-1];
         }
 
         this.underscore[this.wordAsArray.indexOf(char)] = char;
         this.document.getElementById("responseOutput").innerHTML = underscore.join(" ").toUpperCase();	
 
     }
-
-
 
 }
 

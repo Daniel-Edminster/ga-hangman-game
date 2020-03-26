@@ -10,3 +10,10 @@ function keyEvent(e){
   checkWin();
 }
 
+// class Utils extends Hangman {
+
+//     constructor()
+//     {
+//       super(mode)
+//     }
+// }
