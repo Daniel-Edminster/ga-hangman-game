@@ -12,37 +12,52 @@ let score = window.localStorage;
 let scoreUpdated = 0;
 let gameended = 0;
 
-function checkWin()
+function checkWin(timeup = 0)
 {
-	if(underscore.indexOf("_") === -1)
+	if(timeup === 1)
 	{
-		if(!score.getItem("Score"))
-		{
-			score.setItem("Score",0);
-		}
+		alert("You ran out of time. Your word was: " + w + "\n Resetting game..");
+		setTimeout(function() {
+			location.reload();
+		},1500)
 
-
-		if(!scoreUpdated)
-		{
-			let scoreValue = score.getItem("Score");
-			scoreValue++;
-			score.setItem("Score", scoreValue);
-			updateScore();
-		}
-		
-		scoreUpdated++;
 	}
 
-	if(wrongGuesses === 6)
-	{
-		if(!gameended)
+	else {
+		if(underscore.indexOf("_") === -1)
 		{
-			gameended = 1;
-			alert("You killed him. Your word was: " + w + "\n Resetting game..");
-			setTimeout(function() {
-				location.reload();
-			},1500)
+			if(!score.getItem("Score"))
+			{
+				score.setItem("Score",0);
+			}
 
+			if(!scoreUpdated)
+			{
+				let scoreValue = score.getItem("Score");
+				scoreValue++;
+				score.setItem("Score", scoreValue);
+				updateScore();
+				alert("Great job, +1 total score!\nReloading game..");
+				setTimeout(function() {
+					location.reload();
+				},1500)
+
+			}
+			
+			scoreUpdated++;
+		}
+
+		if(wrongGuesses === 6)
+		{
+			if(!gameended)
+			{
+				gameended = 1;
+				alert("You killed him. Your word was: " + w + "\n Resetting game..");
+				setTimeout(function() {
+					location.reload();
+				},1500)
+
+			}
 		}
 	}
 }
@@ -217,27 +232,32 @@ function fillUnderscores(char)
 //   handler();
 
 //https://codepen.io/yaphi1/pen/KpbRZL
-var time_in_minutes = 10;
-var current_time = Date.parse(new Date());
-var deadline = new Date(current_time + time_in_minutes*30*1000);
-
+let time_in_minutes = 10;
+let current_time = Date.parse(new Date());
+let deadline = new Date(current_time + time_in_minutes*30*1000);
 
 function time_remaining(endtime){
-	var t = Date.parse(endtime) - Date.parse(new Date());
-	var seconds = Math.floor( (t/1000) % 60 );
-	var minutes = Math.floor( (t/1000/60) % 60 );
-	var hours = Math.floor( (t/(1000*60*60)) % 24 );
-	var days = Math.floor( t/(1000*60*60*24) );
+	let t = Date.parse(endtime) - Date.parse(new Date());
+	let seconds = Math.floor( (t/1000) % 60 );
+	let minutes = Math.floor( (t/1000/60) % 60 );
+	let hours = Math.floor( (t/(1000*60*60)) % 24 );
+	let days = Math.floor( t/(1000*60*60*24) );
 	return {'total':t, 'days':days, 'hours':hours, 'minutes':minutes, 'seconds':seconds};
 }
 function run_clock(id,endtime){
-	var clock = document.getElementById(id);
+	let clock = document.getElementById(id);
 	function update_clock(){
-		var t = time_remaining(endtime);
+		let t = time_remaining(endtime);
 		if(t.seconds < 10) t.seconds = "0"+t.seconds;
 
 		clock.innerHTML = ''+t.minutes+':'+t.seconds;
-		if(t.total<=0){ clearInterval(timeinterval); }
+		if(t.total<=0)
+		{ 
+			let timeup = 1;
+			checkWin(timeup);
+			clearInterval(timeinterval); 
+
+		}
 	}
 	update_clock(); // run function once at first to avoid delay
 	var timeinterval = setInterval(update_clock,1000);

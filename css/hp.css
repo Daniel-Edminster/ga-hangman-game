@@ -53,3 +53,26 @@ h3 {
     text-align: center;
     /* border: 1px solid red; */
 }
+
+#link-container {
+    margin: 0 auto;
+    display: block;
+
+}
+
+.gamebutton {
+    border: 1px solid white;
+    color: #f1f1f1;
+    text-decoration: none;
+    padding: .4em;
+    border-radius: .2em;
+    margin: 0 auto;
+    /* display: block; */
+
+}
+
+#scoreDisplay {
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+}

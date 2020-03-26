@@ -4,13 +4,36 @@ let underscore = [];
 let usedKeys = [];
 let wrongGuesses = 0;
 let gameended = 0;
+let scoreUpdated = 0;
 
 function randomIndex(min, max) {  
     return Math.floor(Math.random() * (max - min) + min); 
 }
 
-function checkWin()
+function updateScore()
 {
+	document.getElementById("scoreDisplay").innerHTML = `Your score: ${+score.getItem("Score")}`;
+}
+
+function resetScore()
+{
+	score.setItem("Score",0);
+	updateScore();
+}
+
+function checkWin(timeup = 0)
+{
+    if(timeup === 1)
+	{
+
+        hpc.setAttribute("src", gamestates[7]);
+		alert("You ran out of time. Your word was: " + w + "\n Resetting game..");
+		setTimeout(function() {
+			location.reload();
+		},1500)
+
+    }
+    
 	if(underscore.indexOf("_") === -1)
 	{
 		if(!score.getItem("Score"))
@@ -145,6 +168,48 @@ function fillUnderscores(char)
 
 }
 
+//https://stackoverflow.com/questions/19429890/javascript-timer-just-for-minutes-and-seconds
+// var handler = function() {
+// 	var date = new Date();
+// 	var sec = date.getSeconds();
+// 	var min = date.getMinutes();
+// 	document.getElementById("time").textContent = (min < 10 ? "0" + min : min) + ":" + (sec < 10 ? "0" + sec : sec);
+//   };
+//   setInterval(handler, 1000);
+//   handler();
+
+//https://codepen.io/yaphi1/pen/KpbRZL
+let time_in_minutes = 10;
+let current_time = Date.parse(new Date());
+let deadline = new Date(current_time + time_in_minutes*30*1000);
+
+function time_remaining(endtime){
+	let t = Date.parse(endtime) - Date.parse(new Date());
+	let seconds = Math.floor( (t/1000) % 60 );
+	let minutes = Math.floor( (t/1000/60) % 60 );
+	let hours = Math.floor( (t/(1000*60*60)) % 24 );
+	let days = Math.floor( t/(1000*60*60*24) );
+	return {'total':t, 'days':days, 'hours':hours, 'minutes':minutes, 'seconds':seconds};
+}
+function run_clock(id,endtime){
+	let clock = document.getElementById(id);
+	function update_clock(){
+		let t = time_remaining(endtime);
+		if(t.seconds < 10) t.seconds = "0"+t.seconds;
+
+		clock.innerHTML = ''+t.minutes+':'+t.seconds;
+		if(t.total<=0)
+		{ 
+			let timeup = 1;
+			checkWin(timeup);
+			clearInterval(timeinterval); 
+
+		}
+	}
+	update_clock(); // run function once at first to avoid delay
+	var timeinterval = setInterval(update_clock,1000);
+}
+run_clock('clockdiv',deadline);
 
 window.onload = () =>
 {
@@ -152,17 +217,10 @@ window.onload = () =>
     let hpc = document.querySelector(".hp-hangman-container");
     hpc.setAttribute("src", gamestates[wg]);
 
-    // hpc.addEventListener("click", function()
-    // {
-
-    //     wg++
-    //     if(wg > 7) wg = 0;
-    //     hpc.setAttribute("src", gamestates[wg]);
-
-    // });
 
     
 	document.getElementById("responseOutput").innerHTML = underscore.join(" ");
-	this.document.getElementById("letters").innerHTML = letters.join(" ");
+    this.document.getElementById("letters").innerHTML = letters.join(" ");
+    updateScore();
 }
 
