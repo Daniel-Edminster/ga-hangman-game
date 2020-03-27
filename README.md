@@ -1,4 +1,4 @@
-## Mobile-friendly Hangman game using Dictionaries, JavaScript
+### Mobile-friendly Hangman game using Dictionaries, JavaScript, and ASCII art
 
 - 2 Modes: ASCII and Potter Puppet Pals
 - Lynch a stick figure or Lord Voldemort
