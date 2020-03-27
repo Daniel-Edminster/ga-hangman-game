@@ -241,6 +241,10 @@ p {
     display: none;
 }
 
+.clearfix {
+    clear: both;
+}
+
 @media screen and (max-width: 1100px)
 {
     .mobileInput {
