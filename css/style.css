@@ -39,6 +39,7 @@ body {
     margin: 0 auto;
     text-align: center;
     font-size: 2em;
+    color: white !important;
     
     /* text-decoration: underline; */
     /* text-align: center; */
@@ -106,8 +107,11 @@ textarea {
 #gamestateDisplay {
     border: 3px double #f1f1f1;
     /* border: 2px dotted #000; */
-    max-width: 35vw;
+    max-width: 500px;
+    /* max-width: 35vw; */
     /* min-height: 10vh; */
+    padding: 0 25% 0 0;
+    text-align: center;
     margin: 0 auto;
     font-size: 2em;
     text-align: center;
