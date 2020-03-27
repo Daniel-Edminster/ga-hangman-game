@@ -76,7 +76,7 @@ class Hangman {
 
         if(timeup === 1)
         {
-            local.setItem("streak", 0);
+
             alert("You ran out of time. Your word was: " + this.word + "\n Resetting game..");
             setTimeout(function() {
                 location.reload();
@@ -101,8 +101,6 @@ class Hangman {
                     this.score.setItem("Score", scoreValue);
                     this.updateScore();
 
-                    lastStreak = parseInt(streak) + 1;
-                    local.setItem("streak", lastStreak);
                     alert("Great job, +1 total score!\nReloading game..");
                     setTimeout(function() {
                         location.reload();
@@ -118,7 +116,6 @@ class Hangman {
                 if(!this.gameended)
                 {
                     this.gameended = 1;
-                    local.setItem("streak", 0);
                     alert("You killed him. Your word was: " + this.word + "\n Resetting game..");
                     setTimeout(function() {
                         location.reload();
@@ -165,7 +162,13 @@ class Hangman {
 
     updateScore()
     {
-        document.getElementById("scoreDisplay").innerHTML = `Your score: ${this.score.getItem("Score")}`;
+        if(this.score.getItem("Score") == 0)
+        {
+            document.getElementById("scoreDisplay").innerHTML = "Your score: 0";
+        }
+        else {
+            document.getElementById("scoreDisplay").innerHTML = `Your score: ${this.score.getItem("Score")}`;
+        }
     }
 
     resetScore()
