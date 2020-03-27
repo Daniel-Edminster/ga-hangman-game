@@ -66,19 +66,7 @@ H)    hh  a)AAAA n)   NN  g)GGGG m)      MM  a)AAAA n)   NN
 		
 		let local = window.localStorage;
 
-        // let lastStreak = 0;
-        if(!local.getItem("streak"))
-        {
-		   local.setItem("streak", 0 );
-		   let streak = local.getItem("streak");
-        }
-        else {
-			// let streak = local.setItem("streak", lastStreak);
-			let streak = local.getItem("streak");
-        }
 
-		// console.log(local);
-		// console.log(streak);
 		if(!local.getItem("gamemode"))
 		{
 			alert("Select a Game mode to continue");
