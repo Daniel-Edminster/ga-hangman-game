@@ -3,12 +3,27 @@
     font-family: 'Courier New', Courier, monospace;
     
 }
+
+@font-face {
+    font-family: 'argesta_displayregular';
+    src: url('argestadisplay-regular-webfont.eot');
+    src: url('argestadisplay-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('argestadisplay-regular-webfont.woff2') format('woff2'),
+         url('argestadisplay-regular-webfont.woff') format('woff'),
+         url('argestadisplay-regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
 body {
     font-size: 1.1em;
     background: #111111;
     margin: 0;
     padding: 0;
     color: white;
+
 }
 
 .ascii-title {
@@ -89,6 +104,7 @@ textarea {
     padding: .4em;
     border-radius: .2em;
     margin: 0 auto;
+    cursor: pointer;
     /* display: block; */
 
 }
@@ -139,7 +155,7 @@ textarea {
 .game-container {
     margin: 0 auto;
     max-width: 900px;
-    height: 100%;
+    height: 100vh;
     border-left: 3px double #f1f1f1;
     border-right: 3px double #f1f1f1;
 }
@@ -160,10 +176,69 @@ textarea {
 
 }
 
+
+
 p {
     text-align: center;
     font-style: italic;
     font-size: .8em;
+}
+
+.intro-flex {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    /* border: 1px solid red; */
+
+}
+
+.ascii-mode {
+    font-family: 'Courier New', Courier, monospace;
+    color: #f1f1f1;
+    border-right: 1px solid #F1F1F1;
+    font-size: 2.2em;
+}
+
+.potter-mode {
+    font-family: 'Courier New', Courier, monospace;
+    color: #f1f1f1;
+    border-left: 1px solid #F1F1F1;
+    font-family: 'argesta_displayregular';
+    font-size: 2em;
+}
+
+.ascii-mode:hover, .potter-mode:hover
+{
+    color: goldenrod;
+    cursor: pointer;
+}
+
+
+.mode-container {
+    /* border: 1px solid red; */
+    margin: 0 auto;
+    height: 200px;
+    text-align: center;
+    width: 600px;
+}
+.hang {
+    font-family: 'Courier New', Courier, monospace;
+    color: #f1f1f1;
+    float: left;
+    /* border-right: 2px solid #f1f1f1; */
+    width: 280px;
+}
+
+.man {
+    /* border-left: 2px solid #f1f1f1; */
+    font-family: 'argesta_displayregular';
+    color: #f1f1f1;
+    float: left;
+    font-size: 8em;
+}
+
+.hp-title {
+    display: none;
 }
 
 @media screen and (max-width: 1100px)
@@ -171,4 +246,20 @@ p {
     .mobileInput {
         display: block;
     }
+}
+
+@media screen and (max-width: 900px)
+{
+    .mode-container {
+        width: 100vw;
+        /* border: 5px solid red; */
+    }
+    .game-container {
+        width: 100vw;
+    }
+    .ascii-title {
+        font-size: .5em;
+        text-align: left;
+    }
+
 }

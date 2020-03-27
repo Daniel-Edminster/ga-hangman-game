@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<title>Hangman</title>
+        
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+    </head>
+    
+    <body>
+        <div class="mode-container">
+        <pre class="hang">
+                                     
+   /\  /\__ _ _ __   __ _ 
+  / /_/ / _` | '_ \ / _` |
+ / __  / (_| | | | | (_| |
+ \/ /_/ \__,_|_| |_|\__, |
+                    |___/ 
+        </pre><span class="man">MAN</span>
+
+    </div>
+
+    <div class="intro-flex">
+        <div class="ascii-mode">ASCII Mode&nbsp;</div>
+        <div class="potter-mode">  &nbsp;&nbsp;Potter Mode</div>
+
+
+    </div>
+
+    <script>
+
+        let local = window.localStorage;
+
+
+
+        let am = document.querySelector(".ascii-mode");
+        let pm = document.querySelector(".potter-mode");
+
+        am.addEventListener("click", function()
+        {
+            local.setItem("gamemode", "ascii");
+            window.location.href = "game.html";
+        });
+        
+        pm.addEventListener("click", function()
+        {
+            local.setItem("gamemode", "potter");
+            window.location.href = "game.html";
+        })
+
+
+
+
+    </script>
+    </body>
+</html>

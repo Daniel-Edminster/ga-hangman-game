@@ -40,9 +40,16 @@ class Hangman {
         if(this.mode === "potter")
         {
             let asciiState = document.querySelector("#gamestateDisplay");
+            let style = document.querySelector("#css");
+
             document.querySelector(".gallows").removeChild(asciiState);
+            style.setAttribute("href", "css/hp.css");
+
+
             this.stateImageContainer.setAttribute("src", this.gamestates[this.wrongGuesses]);
             document.querySelector(".gallows").appendChild(this.stateImageContainer);
+
+        
         }
         document.getElementById("responseOutput").innerHTML = this.underscore.join(" ");
     }
@@ -66,9 +73,10 @@ class Hangman {
     {
 
 
-        console.log(this.underscore);
+
         if(timeup === 1)
         {
+            local.setItem("streak", 0);
             alert("You ran out of time. Your word was: " + this.word + "\n Resetting game..");
             setTimeout(function() {
                 location.reload();
@@ -79,7 +87,6 @@ class Hangman {
         else {
             if(this.underscore.indexOf("_") === -1)
             {
-                console.log("checkwin: ", this.underscore);
         
                 if(!this.score.getItem("Score"))
                 {
@@ -93,6 +100,9 @@ class Hangman {
                     this.scoreUpdated++;
                     this.score.setItem("Score", scoreValue);
                     this.updateScore();
+
+                    lastStreak = parseInt(streak) + 1;
+                    local.setItem("streak", lastStreak);
                     alert("Great job, +1 total score!\nReloading game..");
                     setTimeout(function() {
                         location.reload();
@@ -103,11 +113,12 @@ class Hangman {
                
             }
 
-            if(this.wrongGuesses === 6)
+            if(this.wrongGuesses === this.gamestates.length-1)
             {
                 if(!this.gameended)
                 {
                     this.gameended = 1;
+                    local.setItem("streak", 0);
                     alert("You killed him. Your word was: " + this.word + "\n Resetting game..");
                     setTimeout(function() {
                         location.reload();
@@ -146,7 +157,7 @@ class Hangman {
             let index = randomIndex(0, hpGlossary.length-1);
 
             // w = hpGlossary[index];
-            this.word = hpGlossary[index];
+            this.word = hpGlossary[index].toLowerCase();
             this.wordAsArray = this.word.split("");
         }
     }
@@ -166,7 +177,6 @@ class Hangman {
     checkLetterPool(char)
     {
 
-        console.log(char);
         char = char.key;
         let index = '';
 
@@ -174,17 +184,16 @@ class Hangman {
         if(!this.usedKeys.includes(char))
         {
             this.usedKeys.push(char);
-            console.log(this.usedKeys);
 
             if(this.letters.includes(char))
             {
                 index = this.letters.indexOf(char);
                 this.letters.splice(index, 1);
-                    // alert("Found char"); 
+
             }  
 
             document.getElementById("letters").innerHTML = this.letters.join(" ");
-            console.log("169: ", char);
+ 
             this.fillUnderscores(char.toLowerCase());
         }
 
@@ -196,7 +205,6 @@ class Hangman {
     fillUnderscores(char)
     {
 
-        console.log("fillUnderscores: ", char);
         for(let i=0;i<this.wordAsArray.length;i++)
         {
             if(this.wordAsArray[i] === char)
@@ -220,7 +228,7 @@ class Hangman {
             }
         }
 
-        if (mode === "ascii")
+        if (this.mode === "ascii")
         {        
             if(this.wrongGuesses < this.gamestates.length -1)
             {
@@ -230,8 +238,16 @@ class Hangman {
                 document.getElementById("gamestateDisplay").innerHTML = this.gamestates[this.gamestates.length-1];
             }
         }
-        else if(mode === "potter")
+        else if(this.mode === "potter")
         {
+            if(this.wrongGuesses < this.gamestates.length)
+            {
+                document.getElementById("gamestateDisplay").src = this.gamestates[this.wrongGuesses];
+            }
+            else {
+                document.getElementById("gamestateDisplay").src = this.gamestates[this.gamestates.length-1];
+            }
+
 
         }
         this.underscore[this.wordAsArray.indexOf(char)] = char;

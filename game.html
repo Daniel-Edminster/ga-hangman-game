@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<link rel="stylesheet" href="css/style.css" id="css">
+		<script src="js/class.hangman.js"></script>
+
+		<script src="js/keyEvent.js"></script>
+		<script src="js/gamestates.js"></script>
+
+		<title></title>
+		
+	</head>
+<body>
+
+	
+
+<div class="game-container">
+
+	<pre class="ascii-title">
+H)    hh                                         
+H)    hh                                             
+H)hhhhhh a)AAAA  n)NNNN   g)GGG   m)MM MMM  a)AAAA  n)NNNN 
+H)    hh  a)AAA  n)   NN g)   GG m)  MM  MM  a)AAA  n)   NN
+H)    hh a)   A  n)   NN g)   GG m)  MM  MM a)   A  n)   NN
+H)    hh  a)AAAA n)   NN  g)GGGG m)      MM  a)AAAA n)   NN
+		              GG                            
+  		          g)GGGG                             
+	</pre>
+
+	<div class="hp-title">Potter Puppet Pals Hangman</div>
+<div ><p class="sub">Play using your keyboard!</p></div>
+	<div class="gallows">
+<pre id="gamestateDisplay">
+
+
+</pre>
+</div>
+
+	<div id="responseOutput"></div>
+
+	<br >
+	<div id="letters"></div>
+
+	<div>
+		<input class="mobileInput" maxlength="1" />
+
+	</div>
+<div id="showKey"></div>
+
+<div id="scoreDisplay"></div>
+
+<br />
+	<div id="link-container">
+		<a href="#" class="gamebutton" onclick="h.resetScore()">Reset Score</a><br /><br />
+		<a href="#" id="clockdiv" class="gamebutton extended"></a>
+		<a class="gamebutton" onclick="changeMode();">Toggle Mode</a>
+	</div>
+
+	<div id="gsd"></div>
+
+</div>
+
+	<script>
+
+		
+		let local = window.localStorage;
+
+        // let lastStreak = 0;
+        if(!local.getItem("streak"))
+        {
+		   local.setItem("streak", 0 );
+		   let streak = local.getItem("streak");
+        }
+        else {
+			// let streak = local.setItem("streak", lastStreak);
+			let streak = local.getItem("streak");
+        }
+
+		// console.log(local);
+		// console.log(streak);
+		if(!local.getItem("gamemode"))
+		{
+			alert("Select a Game mode to continue");
+			window.location.href = "index.html";
+		}
+
+		let title = document.querySelector("title");
+
+		title.textContent = `${local.getItem("gamemode").toUpperCase()} Hangman`;
+
+		let h = new Hangman(local.getItem("gamemode"));
+		if(local.getItem("gamemode") === "ascii")
+		{
+			document.getElementById("gamestateDisplay").innerHTML = h.gamestates[h.wrongGuesses];
+		}
+		document.body.onkeypress = function(e)
+		{
+			keyEvent(e);
+		}
+
+		function changeMode()
+		{
+			local.getItem("gamemode") === "ascii" ? local.setItem("gamemode", "potter") : local.setItem("gamemode", "ascii");
+			window.location.reload(); 
+		}
+
+
+	</script>
+	</body>
+</html>
